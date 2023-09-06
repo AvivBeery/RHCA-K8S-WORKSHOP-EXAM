@@ -98,3 +98,7 @@ a. Pod named 'redis-storage-yourname'
 b. Pod 'redis-storage-yourname' uses Volume type of emptyDir
 c. Pod 'redis-storage-yourname' uses volumeMount with mountPath =
 /data/redis
+https://raw.githubusercontent.com/AvivBeery/RHCA-K8S-WORKSHOP-EXAM/main/11.create%20pod%20redis-storage
+
+12. Create this pod and attached it a persistent volume called pv-1
+a. Make sure the PV mountPath is hostbase : /data
