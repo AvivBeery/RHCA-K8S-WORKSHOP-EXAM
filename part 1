@@ -102,3 +102,55 @@ https://raw.githubusercontent.com/AvivBeery/RHCA-K8S-WORKSHOP-EXAM/main/11.creat
 
 12. Create this pod and attached it a persistent volume called pv-1
 a. Make sure the PV mountPath is hostbase : /data
+apiVersion: v1
+kind: Pod
+metadata:
+ creationTimestamp: null
+ labels:
+ run: use-pv
+ name: use-pvspec-aviv
+ containers:
+ - image: nginx
+ name: use-pv
+ resources: {}
+ dnsPolicy: ClusterFirst
+ restartPolicy: Always
+status: {}
+    volumeMounts:
+    - mountPath: /data/redis
+      name: use-pvspec-aviv
+  volumes:
+  - name: use-pvspec-aviv
+
+13. Create a new deployment called nginx-deploy, with image nginx:1.16 and 1 replica.
+Record the version. Next upgrade the deployment to version 1.17 using rolling
+update. Make sure that the version upgrade is recorded in the resource annotation.
+a. Deployment : nginx-deploy. Image: nginx:1.16
+b. Image: nginx:1.16
+c. Task: Upgrade the version of the deployment to 1:17
+d. Task: Record the changes for the image upgrade
+kubectl run nginx-deploy --image nginx:1.16 --record
+kubectl rollout history deployment
+kubectl set image deployment/nginx-deploy nginx-deploy=nginx:1.17 --record
+kubectl rollout history deployment
+
+14. Create an nginx pod called nginx-resolver using image nginx, expose it internally
+with a service called nginx-resolver-service. Test that you are able to look up the
+service and pod names from within the cluster. Use the image: busybox:1.28 for dns
+lookup. Record results in /root/nginx-yourname.svc and /root/nginx-yourname.pod
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-resolver-service
+spec:
+  selector:
+    app: nginx-resolver
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+kubectl run --restart=Never --image busybox:1.28 dns -- sleep 1000
+IP of the service
+kubectl get svc nginx-resolver-service -o=jsonpath='{.spec.clusterIP}'
+kubectl exec -it dns -- nslookup 53.17.255.108 > /root/nginx.svc
+kubectl exec -it dns -- nslookup $(kubectl get svc nginx-resolver-service -o=jsonpath='{.spec.clusterIP}') > /root/nginx.svc
