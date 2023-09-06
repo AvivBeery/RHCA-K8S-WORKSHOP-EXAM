@@ -138,7 +138,6 @@ kubectl rollout history deployment
 with a service called nginx-resolver-service. Test that you are able to look up the
 service and pod names from within the cluster. Use the image: busybox:1.28 for dns
 lookup. Record results in /root/nginx-yourname.svc and /root/nginx-yourname.pod
-`
 apiVersion: v1
 kind: Service
 metadata:
@@ -155,4 +154,3 @@ IP of the service
 kubectl get svc nginx-resolver-service -o=jsonpath='{.spec.clusterIP}'
 kubectl exec -it dns -- nslookup 53.17.255.108 > /root/nginx.svc
 kubectl exec -it dns -- nslookup $(kubectl get svc nginx-resolver-service -o=jsonpath='{.spec.clusterIP}') > /root/nginx.svc
-`
