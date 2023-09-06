@@ -90,3 +90,11 @@ a. Volume Name: pv-analytics
 b. Storage: 100Mi
 c. Access modes: ReadWriteMany
 d. Host Path: /pv/data-analytics
+https://raw.githubusercontent.com/AvivBeery/RHCA-K8S-WORKSHOP-EXAM/main/10.%20create%20persistent%20volume
+
+11. Create a Pod called redis-storage-yourname with image: redis:alpine with a Volume
+of type emptyDir that lasts for the life of the Pod. specs:.
+a. Pod named 'redis-storage-yourname'
+b. Pod 'redis-storage-yourname' uses Volume type of emptyDir
+c. Pod 'redis-storage-yourname' uses volumeMount with mountPath =
+/data/redis
