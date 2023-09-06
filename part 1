@@ -153,4 +153,57 @@ kubectl run --restart=Never --image busybox:1.28 dns -- sleep 1000
 IP of the service
 kubectl get svc nginx-resolver-service -o=jsonpath='{.spec.clusterIP}'
 kubectl exec -it dns -- nslookup 53.17.255.108 > /root/nginx.svc
-kubectl exec -it dns -- nslookup $(kubectl get svc nginx-resolver-service -o=jsonpath='{.spec.clusterIP}') > /root/nginx.svc
+kubectl exec -it dns -- nslookup
+kubectl get svc nginx-resolver-service -o=jsonpath='{.spec.clusterIP}') > /root/nginx.svc
+
+15. Create a static pod on node01 called nginx-critical with image nginx. Create this pod
+on node01 and make sure that it is recreated/restarted automatically in case of a
+failure.
+ssh node01
+cat /var/lib/kubelet/config.yaml | grep stat
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx-critical
+spec:
+  containers:
+    - name: web
+      image: nginx
+      ports:
+        - name: web
+          containerPort: 80
+          protocol: TCP
+
+16. Create a pod called multi-pod with two containers.
+Container 1, name: alpha, image: nginx
+Container 2: beta, image: busybox, command sleep 4800.
+a. Environment Variables:
+i. container 1:
+ii. name: alpha
+iii. Container 2:
+iv. name: beta
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: mc1
+spec:
+  volumes:
+  - name: alpha
+    emptyDir: {}
+  containers:
+  - name: 1
+    image: nginx
+    volumeMounts:
+    - name: beta
+      mountPath: /usr/share/nginx/html
+  - name: 2
+    image: busybox
+    volumeMounts:
+    - name: html
+      mountPath: /html
+    command: "sleep 4800"
+    args:
+      - while true; do
+          date >> /html/index.html;
+          sleep 1;
