@@ -1,0 +1,33 @@
+1. Create a deployment called webapp with image nginx with 5 replicas 
+a. Use the below command to create a yaml file. 
+i. 
+ii. 
+kubectl create deploy webapp --image=nginx --dry-run -o yaml > 
+webapp.yaml  
+
+'Edit it and add 5 replica’s
+vi webapp.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: webapp
+  name: webapp
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: webapp
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: webapp
+    spec:
+      containers:
+      - image: nginx
+        name: nginx
+        resources: {}
+status: {} '
