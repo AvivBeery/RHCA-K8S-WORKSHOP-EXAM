@@ -4,8 +4,8 @@ i.
 ii. 
 kubectl create deploy webapp --image=nginx --dry-run -o yaml > 
 webapp.yaml  
-
-'Edit it and add 5 replica’s
+`
+Edit it and add 5 replica’s
 vi webapp.yaml
 apiVersion: apps/v1
 kind: Deployment
@@ -30,4 +30,4 @@ spec:
       - image: nginx
         name: nginx
         resources: {}
-status: {} '
+status: {} `    
