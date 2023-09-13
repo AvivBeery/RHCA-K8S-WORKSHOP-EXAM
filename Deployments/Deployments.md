@@ -111,7 +111,8 @@ kubectl describe deploy webapp | grep Image
 kubectl set image deploy/webapp nginx=nginx:1.17.4
 ```
 ```
-kubectl describe deploy webapp | grep Image```
+kubectl describe deploy webapp | grep Image
+```
     Image:        nginx:1.17.4
 
 8. Check the rollout history and make sure everything is ok after the update 
