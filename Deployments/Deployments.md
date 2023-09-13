@@ -118,9 +118,7 @@ kubectl describe deploy webapp | grep Image```
 ```
 kubectl rollout history deploy webapp
 ```
-```
 deployment.apps/webapp
-```
 REVISION  CHANGE-CAUSE
 1         <none>
 2         <none>
