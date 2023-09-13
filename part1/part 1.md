@@ -2,15 +2,17 @@
 ```
 kubectl run nginx-pod-aviv --image=nginx:alpine
 ```
-
-
-3. Deploy a messaging pod using the redis:alpine image with the labels set to tier=msg.
+2. Deploy a messaging pod using the redis:alpine image with the labels set to tier=msg.
 Pod Name: messaging
 Image: redis:alpine
+```
 kubectl run messaging --image=redis:alpine --labels=tier=msg
+```
 
 4. Create a namespace named apx-x998-yourname
+```
 kubectl create ns apx-x998-aviv
+```
 
 5. Get the list of nodes in JSON format and store it in a file at /tmp/nodes-yourname
 kubectl get nodes -o json > /tmp/nodes-aviv.json
@@ -24,7 +26,7 @@ d. Type: ClusterIp
 e. Use the right labels
 kubectl expose pod messaging --name=messaging-service --port 6379
 
-Create a service messaging-service to expose the messaging application within the
+6.Create a service messaging-service to expose the messaging application within the
 cluster on port 6379.
 a. Service: messaging-service
 b. Port: 6379
@@ -57,7 +59,7 @@ b. Image: kodekloud/webapp-color
 c. Replicas: 2
 kubectl create deploy shr-web-app --image  kodekloud/webapp-color --replicas=2
 
-Create a static pod named static-busybox on the master node that uses the busybox
+8.Create a static pod named static-busybox on the master node that uses the busybox
 image and the command sleep 1000
 a. Name: static-busybox
 b. Image: busybox
