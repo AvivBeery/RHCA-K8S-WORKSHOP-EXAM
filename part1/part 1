@@ -1,5 +1,7 @@
 1. Deploy a pod named nginx-pod using the nginx:alpine image
+```
 kubectl run nginx-pod-aviv --image=nginx:alpine
+```
 
 2. Deploy a messaging pod using the redis:alpine image with the labels set to tier=msg.
 Pod Name: messaging
