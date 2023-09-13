@@ -4,21 +4,18 @@ kubectl run nginx-pod-aviv --image=nginx:alpine
 ```
 
 
-
-
-
-2. Deploy a messaging pod using the redis:alpine image with the labels set to tier=msg.
+3. Deploy a messaging pod using the redis:alpine image with the labels set to tier=msg.
 Pod Name: messaging
 Image: redis:alpine
 kubectl run messaging --image=redis:alpine --labels=tier=msg
 
-3. Create a namespace named apx-x998-yourname
+4. Create a namespace named apx-x998-yourname
 kubectl create ns apx-x998-aviv
 
-4. Get the list of nodes in JSON format and store it in a file at /tmp/nodes-yourname
+5. Get the list of nodes in JSON format and store it in a file at /tmp/nodes-yourname
 kubectl get nodes -o json > /tmp/nodes-aviv.json
 
-5. Create a service messaging-service to expose the messaging application within the
+6. Create a service messaging-service to expose the messaging application within the
 cluster on port 6379.
 a. Use imperative commands - kubectl
 b. Service: messaging-service
