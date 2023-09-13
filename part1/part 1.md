@@ -15,8 +15,9 @@ kubectl create ns apx-x998-aviv
 ```
 
 5. Get the list of nodes in JSON format and store it in a file at /tmp/nodes-yourname
+```
 kubectl get nodes -o json > /tmp/nodes-aviv.json
-
+```
 6. Create a service messaging-service to expose the messaging application within the
 cluster on port 6379.
 a. Use imperative commands - kubectl
@@ -24,14 +25,16 @@ b. Service: messaging-service
 c. Port: 6379
 d. Type: ClusterIp
 e. Use the right labels
+```
 kubectl expose pod messaging --name=messaging-service --port 6379
-
+```
 6.Create a service messaging-service to expose the messaging application within the
 cluster on port 6379.
 a. Service: messaging-service
 b. Port: 6379
 c. Type: ClusterIp
 d. Use the right labels:
+```
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -51,20 +54,23 @@ spec:
         image: redis:alpine
         ports:
         - containerPort: 6379
-
+```
  7. Create a deployment named hr-web-app using the image kodekloud/webapp-color
 with 2 replicas
 a. Name: hr-web-app
 b. Image: kodekloud/webapp-color
 c. Replicas: 2
+```
 kubectl create deploy shr-web-app --image  kodekloud/webapp-color --replicas=2
-
+```
 8.Create a static pod named static-busybox on the master node that uses the busybox
 image and the command sleep 1000
 a. Name: static-busybox
 b. Image: busybox
+```
 kubectl run static-busybox --image=busybox --dry-run=client -oyaml --command -- sleep 1000 &gt; /etc/kubernetes/manifests/static-busybox.yaml
-
+```
+```
 apiVersion: v1
 kind: Pod
 metadata:
@@ -82,14 +88,14 @@ spec:
     resources: {}
   dnsPolicy: ClusterFirst
   restartPolicy: Always
-
-
+```
 9. Create a POD in the finance-yourname namespace named temp-bus with the image
 redis:alpine
 a. Name: temp-bus
 b. Image Name: redis:alpine  
+```
 kubectl run finane-aviv -n finance temp-bus --image redis:alpine
-
+```
 10. Create a Persistent Volume with the given specification
 a. Volume Name: pv-analytics
 b. Storage: 100Mi
