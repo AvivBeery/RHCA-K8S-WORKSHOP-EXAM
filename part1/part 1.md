@@ -1,4 +1,4 @@
-![image](https://github.com/AvivBeery/RHCA-K8S-WORKSHOP-EXAM/assets/142738883/ce2bd1e9-d9e3-4cca-b213-379cfc410d05)
+
 1. Deploy a pod named nginx-pod using the nginx:alpine image
 ```
 kubectl run nginx-pod-aviv --image=nginx:alpine
